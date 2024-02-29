@@ -3,9 +3,13 @@
 import ProductCard from "@/components/ProductCard.vue";
 import {useProductsStore} from "@/stores/products.js";
 import {storeToRefs} from "pinia";
+import {onBeforeMount} from "vue";
 
 const productsStore = useProductsStore()
-productsStore.getProducts()
+
+onBeforeMount(() => {
+  productsStore.getProducts()
+})
 
 const { filteredProducts } = storeToRefs(productsStore)
 

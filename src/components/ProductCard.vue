@@ -1,7 +1,5 @@
 <script setup>
 
-import {toRef} from "vue";
-
 const { product } = defineProps(['product'])
 
 </script>

@@ -17,19 +17,19 @@ export const useProductsStore = defineStore('products', () => {
         products.splice(0, 0, ...dummyProducts)
     }
 
-    async function getProduct(id) {
-        let product = findInProductsById(id)
-        if (!product) {
-            const response = await fetch(`https://dummyjson.com/products/${id}`)
-            product = await response.json()
-        }
-        return product
-    }
+    // async function getProduct(id) {
+    //     let product = findInProductsById(id)
+    //     if (!product) {
+    //         const response = await fetch(`https://dummyjson.com/products/${id}`)
+    //         product = await response.json()
+    //     }
+    //     return product
+    // }
 
-    function findInProductsById(id) {
-        return products.find(product => product.id === +id)
-    }
+    // function findInProductsById(id) {
+    //     return products.find(product => product.id === +id)
+    // }
 
-    return {products, search, filteredProducts, getProducts, getProduct}
+    return {products, search, filteredProducts, getProducts}
 })
 
