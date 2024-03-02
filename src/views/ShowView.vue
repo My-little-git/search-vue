@@ -6,15 +6,22 @@ import {useProductsStore} from "@/stores/products.js";
 import {useRoute} from "vue-router";
 import {reactive, ref} from "vue";
 
+
+// Получение значения параметра id из адресной строки
+
 const route = useRoute()
-const productsStore = useProductsStore()
+const id = route.params.id
 
 const product = ref({})
 
-productsStore.getProduct(route.params.id)
-    .then(productDummy => {
-      product.value = productDummy
-    })
+// Деструктуризированное получение метода для получения продукта по id
+const { getProduct } = useProductsStore()
+
+// Получение продукта по id при загрузке этого компонента (загружается при переходе на товар)
+// Используется then потому что метод возвращает Promise
+getProduct(id)
+    .then(dummyProduct => product.value = dummyProduct)
+
 
 </script>
 
@@ -22,12 +29,9 @@ productsStore.getProduct(route.params.id)
 
   <div class="container">
 
+    <!--  Передача компоненту продукта данных о продукте для отрисовки их при загрузке  -->
     <ProductCard :product="product" />
 
   </div>
 
 </template>
-
-<style scoped>
-
-</style>

@@ -1,9 +1,11 @@
-import {createRouter, createWebHistory, onBeforeRouteLeave} from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import {routes} from './routes.js'
 
 export const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
+    linkActiveClass: "active",
+    linkExactActiveClass: 'exact-active'
 })
 
 router.beforeEach((to) => {

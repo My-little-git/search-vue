@@ -1,5 +1,6 @@
 <script setup>
 
+// Получение объекта с данными о продукте которые мы передаём из других компонентов с помощью v-bind (:)
 const { product } = defineProps(['product'])
 
 </script>
