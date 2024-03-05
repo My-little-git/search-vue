@@ -5,16 +5,17 @@ import {useProductsStore} from "@/stores/products.js";
 import {watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
+// Связываем передающийся поиск
+const search = defineModel('search')
+
 const route = useRoute()
 const router = useRouter()
 
-const { search } = storeToRefs(useProductsStore())
-
-search.value = route.query.search || ''
-
-watch(search, () => {
-  router.replace({query: {search: search.value}})
-})
+// search.value = route.query.search || ''
+//
+// watch(search, () => {
+//   router.replace({query: {search: search.value}})
+// })
 
 </script>
 

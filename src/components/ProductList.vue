@@ -1,15 +1,13 @@
 <script setup>
 
 import ProductCard from "@/components/ProductCard.vue";
-import {useProductsStore} from "@/stores/products.js";
-import {storeToRefs} from "pinia";;
 import {useRouter} from "vue-router";
 
 const router = useRouter()
 
-// Получение отфильтрованных продуктов для отрисовки
-// Используем storeToRefs чтобы сохранить реактивность (чтобы если в сторе данные поменялись, то продукты перерендерились)
-const { filteredProducts } = storeToRefs(useProductsStore())
+// Получаем продукты, которые передаём в компонент
+const { products } = defineProps(['products'])
+
 
 </script>
 
@@ -19,7 +17,7 @@ const { filteredProducts } = storeToRefs(useProductsStore())
 
     <!--  Рендерим карточки продуктов, передавая каждой карточке данные о продукте,
     а также вешаем событие для перехода на роут (страницу) продукта -->
-    <ProductCard v-for="product in filteredProducts"
+    <ProductCard v-for="product in products"
                  :key="product.id"
                  :product="product"
                  @click="router.push({name: 'product', params: {id: product.id}})"/>
